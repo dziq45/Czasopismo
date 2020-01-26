@@ -1,0 +1,19 @@
+.containerRejestracja{
+    width:223px;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+
+}
+.changeToOther{
+    border-radius: 20px;
+    background-color: #333;
+    color:white;
+    width:100px;
+    margin:auto;
+    padding-bottom: 2px;
+}
+.changeToOther:hover{
+    background-color: black;
+    cursor: default;
+}

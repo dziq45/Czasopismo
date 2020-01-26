@@ -1,0 +1,111 @@
+.baksketContainer{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.basketImage{
+    width:50px;
+    height: 50px;
+}
+.basketImage:hover{
+    position:relative;
+    width:60px;
+    display:block;
+}
+.iconBasketContainer{
+    margin-right: 15px;
+}
+.expandedBasketContainer{
+
+}
+.expandedBasketLabel{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
+    border: 1px solid black;
+    margin-bottom: 5px;
+}
+.expandedBasketLabel>p{
+    width:200px;
+}
+.basketItem{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
+    border-radius: 20px;
+    border:1px solid black;
+    margin-bottom: 5px;
+}
+.basketItem>div{
+    width:200px;
+}
+.basketItem>img{
+    width:200px;
+}
+.basketItem > p{
+    width:200px;
+}
+.iconCross{
+    position: relative;
+    top:10px;
+}
+.iconCross:hover{
+    position:relative;
+    top:5px;
+    left:-5px;
+    width:50px;
+    height:auto;
+    display:block;
+    z-index:999;
+}
+.razemPodsumowanie{
+    font-size: 26px;
+    text-align: end;
+}
+.zakupLink{
+   font-size: 22px;
+   text-align: end;
+   display:flex;
+   flex-direction: row-reverse;
+}
+.zakupLink>p{
+    text-align: center;
+    margin-top: 5px;
+    width:70px;
+    background-color: #333;
+    color:white;
+    border-radius: 20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+ }
+ .zakupLink>p:hover{
+     background-color: black;
+
+ }
+ .howMany{
+     position: absolute;
+     color: white;
+     top:200px;
+     right:170px;
+     z-index: 10;
+     
+ }
+ .howMany>b{
+     z-index: 1000;
+ }
+ .kolo{
+     position: absolute;
+     right: -30px;
+     width: 70px;
+     z-index: 20;
+ }
+ .howMany2{
+    position: absolute;
+    right: 114px;
+    top:202px;
+    width: 70px;
+    z-index: 20;
+
+ }

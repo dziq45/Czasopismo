@@ -1,0 +1,9 @@
+.container{
+    border: 1px solid black;
+    width: 20%;
+    height: 100px;
+}
+.inputBox{
+    border:1px solid black;
+    margin: 10px;
+}

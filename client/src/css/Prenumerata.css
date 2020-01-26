@@ -1,0 +1,28 @@
+.flexboxContainer{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.flexboxItem{
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    width: 200px;
+    border-radius: 20px;
+    border:1px solid black;
+    padding-top: 36px;
+}
+.powitanieContainer{
+    text-align: center;
+    border:1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+b{
+    font-size: 22px;
+}
+.sumbitBtn2{
+    width:100px;
+}
