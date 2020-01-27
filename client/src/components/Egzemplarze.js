@@ -58,7 +58,6 @@ const Egzemplarze = (props) => {
         }
         localStorage.setItem('egzemplarzePdf', egzemplarzePdf)
         localStorage.setItem('egzemplarzeDruk', egzemplarzeDruk)
-        console.log(localStorage.getItem('egzemplarzeDruk'))
     }
     return(<>
         <Basket isBuying={isBuying} setBuying={setBuying} egzemplarzeDruk={egzemplarzeDruk} setEgzemplarzeDruk={setEgzemplarzeDruk} setEgzemplarzePdf={setEgzemplarzePdf} egzemplarzePdf={egzemplarzePdf}></Basket>

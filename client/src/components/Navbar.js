@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import '../css/Navbar.css'
 const Navbar = (props) => {
+    let history = useHistory()
     const logout=()=>{
         localStorage.removeItem('login')
         props.setLoggedIn(false)
+        history.push('/prenumerata')
     }
     return (<div className='menuContainer'>
             <ul className='menuUL'>

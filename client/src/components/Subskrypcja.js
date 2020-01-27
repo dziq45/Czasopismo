@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import{Link, useHistory} from 'react-router-dom'
 import '../css/Prenumerata.css'
 import magazine from '../images/magazine.jpg'
@@ -7,6 +7,10 @@ const Subskrypcja = () => {
     const[value, setValue] = useState('3')
     let history = useHistory()
 
+    useEffect(()=>{
+        localStorage.setItem('egzemplarzePDF', JSON.stringify([]))
+        localStorage.setItem('egzemplarzeDruk', JSON.stringify([]))
+    },[])
     return ( <div>
         <div className='powitanieContainer'>
             <p><b>Witamy w naszym sklepie internetowym.</b></p>
@@ -15,7 +19,9 @@ const Subskrypcja = () => {
         </div>
         <div className='flexboxContainer'>
             <div className='flexboxItem'>
-                <form onSubmit={()=>{history.push('/zakup')}}>
+                <form onSubmit={()=>{
+                    localStorage.setItem('subskrypcja', value)
+                    history.push('/zakup')}}>
                     <select value={value} onChange={(e)=>{
                         setValue(e.target.value)
                         console.log(e.target.value)

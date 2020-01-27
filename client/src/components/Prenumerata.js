@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Prenumerata.css'
 import magazine from '../images/magazine.jpg'
 import {Link} from 'react-router-dom'
 
 const Prenumerata = () => {
+    useEffect(()=>{
+        localStorage.setItem('subskrypcja', '0')
+    },[])
     return ( <div>
-
         <div className='powitanieContainer'>
             <p><b>Witamy w naszym sklepie internetowym.</b></p>
             <p>Aby kontynuować zakupy wybierz interesujący cię dział</p>
