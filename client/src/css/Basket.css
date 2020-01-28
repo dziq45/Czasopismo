@@ -31,7 +31,6 @@
     display: flex;
     justify-content: space-around;
     flex-flow: row;
-    border-radius: 20px;
     border:1px solid black;
     margin-bottom: 5px;
 }

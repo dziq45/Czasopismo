@@ -14,16 +14,7 @@ schema
 .has().digits()
 
 
-router.get('/hello', function(req, res){
-    db.query('SELECT * FROM czytelnicy')
-    .then(pp=>{
-      res.send(pp.rows)
-    })
-  })
 
-router.post('/posting', (req,res)=>{
-  res.json({siema:'siemano'})
-})
 router.post('/Register', (req,res)=>{
   const{login, password, password2, email} = req.body
   emailFlag = true
@@ -91,5 +82,54 @@ router.get('/Egzemplarze',(req,res)=>{
     .then(pp=>{
       res.send(pp.rows)
     })
+})
+router.post('/Wysylkaa',(req,res)=>{
+  console.log('wysylka')
+  let kodFlag = true
+  let imieFlag = true
+  let nazwiskoFlag = true
+  let adresFlag = true
+  let miastoFlag = true
+  let phoneFlag = true
+  let pattern = /\d{2}-\d{3}$/
+  let phonePattern=/\d{9}$/
+  const{imie, nazwisko, telefon, adres, kodPocztowy, miasto, wojewodztwo} = req.body
+
+  if(!kodPocztowy.match(pattern)){
+    kodFlag=false
+  }
+  if(imie == ''){
+    imieFlag=false
+  }
+  if(nazwisko == ''){
+    nazwiskoFlag=false
+  }
+  if(adres == ''){
+    adresFlag=false
+  }
+  if(miasto == ''){
+    miastoFlag=false
+  }
+  if(!telefon.match(phonePattern)){
+    phoneFlag=false
+  }
+  if(kodFlag && phoneFlag && miastoFlag && imieFlag && nazwiskoFlag && adresFlag){
+    const text = 'INSERT INTO danewysylek(imie, nazwisko, telefon, adres, kodp, miasto, wojewodztwo) VALUES ($1,$2,$3,$4,$5,$6,$7)'
+    const values =[imie, nazwisko, telefon, adres, kodPocztowy, miasto, wojewodztwo]
+    db.query(text,values)
+    .then(r=>{
+      const text2 = 'select id from danewysylek where imie=$1 and nazwisko=$2'
+      const values2 = [imie, nazwisko]
+      db.query(text2, values2)
+      .then(rr=>{
+        res.send({isGut:true, id:rr.rows[0].id})
+      })
+      .catch(error=>console.log(error))
+    })
+    .catch(err=>console.log(err))
+  }
+  else{
+    res.send({isGut:false, errors:[imieFlag, nazwiskoFlag, phoneFlag, adresFlag, kodFlag, miastoFlag]})
+  }
 })
 module.exports = router

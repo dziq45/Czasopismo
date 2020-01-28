@@ -5,14 +5,12 @@ import Navbar from './components/Navbar'
 import Register from './components/Register'
 import Login from './components/Login'
 import Prenumerata from './components/Prenumerata'
-import LoginComponent from './LoginComponent'
-import axios from 'axios'
 import Egzemplarze from './components/Egzemplarze'
-import Basket from './components/Basket'
 import Zakup from './components/Zakup'
 import banner from './images/banner.png'
 import Subskrypcja from './components/Subskrypcja'
-
+import Sukces from './components/Sukces'
+import Porazka from './components/Porazka'
 const App=()=>{
   const [loggedIn, setLoggedIn] = useState(false)
   const [login, setLogin] = useState('')
@@ -33,6 +31,8 @@ const App=()=>{
         <Route path='/register' component={()=><Register toPath='/prenumerata' loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Register>}></Route>
         <Route path='/prenumerata' component={Prenumerata}></Route>
         <Route path='/subskrypcja' component={Subskrypcja}></Route>
+        <Route path='/sukces' component={Sukces}></Route>
+        <Route path='/porazka' component={Porazka}></Route>
         <Route path='/egzemplarze' component={()=><Egzemplarze ></Egzemplarze> }></Route>
         <Route path='/zakup' component={()=><Zakup loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Zakup>}></Route>
       </Router>

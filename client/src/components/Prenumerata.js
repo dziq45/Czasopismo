@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 const Prenumerata = () => {
     useEffect(()=>{
-        localStorage.setItem('subskrypcja', '0')
+        localStorage.setItem('subskrypcja', 0)
     },[])
     return ( <div>
         <div className='powitanieContainer'>

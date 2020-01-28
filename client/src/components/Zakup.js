@@ -2,7 +2,8 @@ import Register from './Register'
 import React, { useState, useEffect } from 'react'
 import Login from './Login'
 import Payment from './Payment'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
+import Wysylka from './daneWysylki'
 
 import '../css/Zakup.css'
 const Zakup = (props) => {
@@ -10,14 +11,20 @@ const Zakup = (props) => {
     const [mode, setMode] = useState(false) //false = subskrypcja true = zamówienie
     const [egzemplarzePdf, setEgzemplarzePdf] = useState([])
     const [egzemplarzeDruk, setEgzemplarzeDruk] = useState([])
-    const [subskrypcja, setSubskrypcja] = useState('0')
+    const [subskrypcja, setSubskrypcja] = useState(0)
+    const [wysylka, setWysylka] = useState(false)
+    const [id, setId] = useState(null)
 
     useEffect(()=>{
         setEgzemplarzePdf(JSON.parse(localStorage.getItem('egzemplarzePdf')))
         setEgzemplarzeDruk(JSON.parse(localStorage.getItem('egzemplarzeDruk')))
-        setSubskrypcja(localStorage.getItem('subkskrypcja'))
-        if(localStorage.getItem('subskrypcja') == '0'){
+        setSubskrypcja(parseInt(localStorage.getItem('subskrypcja')))
+        console.log(`z zakupu ${localStorage.getItem('subskrypcja')}`)
+        if(localStorage.getItem('subskrypcja') == 0){
             setMode(true)
+            if(JSON.parse(localStorage.getItem('egzemplarzeDruk')).length>0){
+                setWysylka(true)
+            }
         }
     },[])
 
@@ -54,7 +61,12 @@ const Zakup = (props) => {
         <div className='changeToOther' onClick={()=>setGoToLogin(!goToLogin)}>Zarejestruj się</div>
     </div>)
 
-
+    const sub=()=>(
+        <div className='powitanieContainer'>
+            <p><b>Kupowana oferta: SUBSKRYPCJA NA OKRES {subskrypcja} MIESIĘCE ZA {subskrypcja*15}ZŁ</b></p>
+            <p>Aby kontynuować zakupy wybierz interesującą cię ofertę płatności</p>
+        </div> 
+    )
     const expanededBasket=()=>(
         <div className='expandedBasketContainer'>
             <div className='expandedBasketLabel'>
@@ -84,8 +96,14 @@ const Zakup = (props) => {
 
     return ( 
         <div>
-        {mode? expanededBasket():'siema'}
-        {!props.loggedIn? goToLogin?logowanie() : rejestracja() : <Payment></Payment>}
+        {mode? expanededBasket():sub()}
+        {!props.loggedIn? goToLogin?logowanie() : rejestracja() :wysylka? <Wysylka setWysylka={setWysylka}></Wysylka> : 
+        <>
+        <Payment wartosc={mode? howMuch(): subskrypcja*15}></Payment>
+        <Link to='/sukces'>Sukces</Link>
+        <Link to='/porazka'>Porażka</Link>
+        </>
+        }
     </div> );
 }
  

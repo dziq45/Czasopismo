@@ -3,26 +3,39 @@ import {PayPalButton} from 'react-paypal-button-v2'
 const Payment = (props) => {
   const [paidFor, setPaidFor] = useState(false)
   const [loaded, setLoaded] = useState(false)
-  let paypalRef = useRef()
 
-    return (<PayPalButton
-      amount="0.01"
-      // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-      onSuccess={(details, data) => {
+
+    return (
+    <PayPalButton
+    options={{
+      clientId: "AQjypYxpwpLaNDwbfQ2eVLdZlVxYANRcMMQufD1ym1EPe6gmSpF-jYlwDeXnCUQt6xYa0Sk59hFIKWa5"
+    }}
+    createOrder={(data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            currency_code: "USD",
+            value: props.wartosc
+          }
+        }],
+      });
+    }}
+    onApprove={(data, actions) => {
+      // Capture the funds from the transaction
+      return actions.order.capture().then(function(details) {
+        // Show a success message to your buyer
         alert("Transaction completed by " + details.payer.name.given_name);
 
         // OPTIONAL: Call your server to save the transaction
         return fetch("/paypal-transaction-complete", {
           method: "post",
           body: JSON.stringify({
-            orderId: data.orderID
+            orderID: data.orderID
           })
         });
-      }}
-      options={{
-        clientId: "AQjypYxpwpLaNDwbfQ2eVLdZlVxYANRcMMQufD1ym1EPe6gmSpF-jYlwDeXnCUQt6xYa0Sk59hFIKWa5"
-      }}
-    />
+      });
+    }}
+  />
 );
 }
  

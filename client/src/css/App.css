@@ -30,6 +30,7 @@
 .layout{
   width:80%;
   margin:auto;
+  background-color:#fffdf7;
 }
 
 @keyframes App-logo-spin {

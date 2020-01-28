@@ -14,7 +14,8 @@
     border: 1px dashed black;
     height: 250px;
     border-radius: 20px;
-    padding:15px
+    padding:15px;
+    background-color: white;
 }
 .szukaj{
 
